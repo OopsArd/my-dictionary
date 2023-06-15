@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Form extends JFrame implements ActionListener {
+public class Form extends JFrame{
     private JPanel panelMain;
     private JLabel labelTittle;
     private JButton btnRandom;
@@ -14,48 +14,47 @@ public class Form extends JFrame implements ActionListener {
     private JButton btnFind;
     private JButton btnAdd;
 
+    Data data;
+     public Form() {
+         btnListWord.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 ListWords ls = new ListWords();
+                 ls.ListWords();
+             }
+         });
+     }
+
+    public void Form() {
 
 
-    public void displayForm() {
+        data = Data.getInit();
 
-        Form ui = new Form();
-        ui.setContentPane(ui.panelMain);
+        this.setContentPane(this.panelMain);
+
         btnListWord.setFocusable(false);
+
+
         btnFind.setFocusable(false);
+
         btnAdd.setFocusable(false);
+
         btnDelete.setFocusable(false);
+
         btnEdit.setFocusable(false);
+
         btnRandom.setFocusable(false);
+
         btnReset.setFocusable(false);
+
         btnMiniGame.setFocusable(false);
-        ui.setTitle("Dictionary App");
-        ui.setSize(500,500);
-        ui.setLocationRelativeTo(null);
-        ui.setVisible(true);
-        ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
 
-    public void actionPerformed(ActionEvent e) {
-        // Xử lý sự kiện ở đây
-        if(e.getSource() == btnListWord){
-            
-        } else if (e.getSource() == btnFind) {
-            
-        } else if (e.getSource() == btnAdd) {
-            
-        } else if (e.getSource() == btnDelete) {
-            
-        } else if (e.getSource() == btnEdit) {
-            
-        } else if (e.getSource() == btnRandom) {
-            
-        } else if (e.getSource() == btnMiniGame) {
-            
-        } else if (e.getSource() == btnReset) {
-            
-        }
+        this.setTitle("Dictionary App");
+        this.setSize(500,500);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
-
 
 }
