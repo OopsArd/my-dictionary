@@ -1,48 +1,38 @@
 import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 
 public class ListWords extends JFrame{
     private JPanel panelMain;
-    private JScrollPane pnSr;
-    private JTable tableList;
+    private JPanel pn1;
+    private JPanel pn2;
+    private JPanel pn3;
+    private JPanel pn4;
+    private JTable tb1;
+    private JButton btnAdd;
+    private JButton btnDelete;
+    private JButton btnEdit;
+    private JButton btnExit;
+    private JTextField txtSearch;
+    private JButton btnSearch;
 
     public void ListWords() {
 
         this.setContentPane(this.panelMain);
         this.setTitle("List Data");
-        this.setSize(1000,1000);
+        this.setSize(850,650);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
-
-
-
-
-
-        this.setVisible(true);
-    }
-
-    void createTable(){
         Data d;
         d = Data.getInit();
+        String[][] data = d.getData();
 
-        String data[][] = d.getData();
-        String header[] = { "Stt", "Key", "Value" };
+        tb1.setModel(new DefaultTableModel(
+                data,
+                new String[] {"Id", "Key", "Value"}
+        ));
+        tb1.setRowHeight(30);
 
-        String[][] dt = {
-                {"1", "John", "Doe"},
-                {"2", "Jane", "Smith"},
-        };
-
-        String[] columnNames = {"ID", "First Name", "Last Name"};
-
-        // Tạo JTable với dữ liệu và tiêu đề cột
-         this.tableList = new JTable(data, columnNames);
-
-
-        //tableList.setModel(new DefaultTableModel(null,header));
+        this.setVisible(true);
     }
 }
