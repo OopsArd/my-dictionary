@@ -35,7 +35,7 @@ public class ListWords extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String key = txtSearch.getText();
-                System.out.println("key: " + key);
+                //System.out.println("key: " + key);
                 String[][] temp1 = d.getValues(key);
                 String[][] temp2 = d.getKeys(key);
 
@@ -53,7 +53,7 @@ public class ListWords extends JFrame{
                             String k = result[i][1];
                             String v = result[i][2];
                             d.saveHistory(k,v);
-                            System.out.println("save ok roi");
+                            System.out.println("save");
                         }
                     } catch (Exception ex) {
                         ex.printStackTrace();
