@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 public class Form extends JFrame{
     private JPanel panelMain;
     private JLabel labelTittle;
-    private JButton btnRandom;
 
     private JButton btnMiniGame;
 
@@ -13,7 +12,7 @@ public class Form extends JFrame{
     private JPanel panelNav;
 
 
-    Data data;
+    Data d = Data.getInit();;
      public Form() {
          btnListWord.addActionListener(new ActionListener() {
              @Override
@@ -23,17 +22,20 @@ public class Form extends JFrame{
                  ls.ListWords();
              }
          });
+         btnMiniGame.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                dispose();
+                Game g = new Game();
+                g.Game();
+             }
+         });
      }
 
     public void Form() {
-
-
-        data = Data.getInit();
-
         this.setContentPane(this.panelMain);
 
         btnListWord.setFocusable(false);
-        btnRandom.setFocusable(false);
         btnMiniGame.setFocusable(false);
 
         this.setTitle("Dictionary App");

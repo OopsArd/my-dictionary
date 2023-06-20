@@ -7,11 +7,10 @@ import java.util.Map.Entry;
 
 public class Data {
     private TreeMap<String, List<String>> listData = new TreeMap<>();
-
     private static Data init = new Data();
-    private String fileInput = "slang2.txt";
+    private String fileInput = "data.txt";
     private String fileData = "slang.txt";
-    private String fileHistory = "slangHistory.txt";
+    private String fileHistory = "history.txt";
     private int sizeData;
 
     private Data () {
@@ -19,7 +18,6 @@ public class Data {
             String f = new File(".").getCanonicalPath();
             fileInput = f + "\\" + fileInput;
             fileHistory = f + "\\" + fileHistory;
-            System.out.println("src:" + fileInput);
             readFile(fileInput);
 
         } catch (Exception e) {
@@ -269,5 +267,65 @@ public class Data {
         return false;
     }
 
+    public String[] randomWord() {
+        // Random a number
+        int min = 0;
+        int max = listData.size() - 1;
+        int rand = (min + (int) (Math.random() * max));
+        // Get slang meaning
+        String s[] = new String[2];
+        int index = 0;
+        for (String key : listData.keySet()) {
+            if (index == rand) {
+                s[0] = key;
+                s[1] = listData.get(key).get(0);
+                break;
+            }
+            index++;
+        }
+        return s;
+    }
+
+    public String[] quiz(int type) {
+        String s[] = new String[6];
+        if (type == 1) {
+            // Random a number
+            String[] question = this.randomWord();
+            s[0] = question[0];
+            int rand = (1 + (int) (Math.random() * 4));
+            s[rand] = question[1];
+            s[5] = question[1];
+            for (int i = 1; i <= 4; i++) {
+                if (rand == i)
+                    continue;
+                else {
+                    String[] slangRand = this.randomWord();
+                    while (slangRand[0] == s[0]) {
+                        slangRand = this.randomWord();
+                    }
+                    s[i] = slangRand[1];
+                }
+            }
+        } else {
+            String[] slangRandom = this.randomWord();
+            s[0] = slangRandom[1];
+            int rand = (1 + (int) (Math.random() * 4));
+            s[rand] = slangRandom[0];
+            s[5] = slangRandom[0];
+            for (int i = 1; i <= 4; i++) {
+                if (rand == i)
+                    continue;
+                else {
+                    String[] slangRand = this.randomWord();
+                    while (slangRand[0] == s[0]) {
+                        slangRand = this.randomWord();
+                    }
+                    s[i] = slangRand[0];
+                }
+            }
+        }
+
+        return s;
+    }
 
 }
